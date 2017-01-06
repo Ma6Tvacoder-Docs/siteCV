@@ -1,0 +1,53 @@
+
+
+/*mes styles*/
+
+body {
+  width: 1260px;
+    background-color: pink;
+}
+
+#contenu{
+    background-color: lavender;
+}
+#menu {
+    width: 400px;
+	background-color: red;
+    float: left;
+    
+}
+#contenuPrincipal {
+    width: 800px;
+	background-color: darkseagreen;
+    float: right;
+}
+
+.clear {
+	clear: both;
+}
+
+/*les tableaux*/
+
+table {
+    background-color: deepskyblue;
+}
+caption {
+    background:orange;
+}
+thead {
+     background: red;
+    color: white;
+}
+
+th {
+     background: red;
+    color: white;
+}
+
+
+/*formulaires*/
+
+
+form {
+    background-color: darkgreen;
+}

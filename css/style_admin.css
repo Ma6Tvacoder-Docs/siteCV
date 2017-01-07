@@ -3,7 +3,7 @@
 /*mes styles*/
 
 body {
-  width: 1260px;
+  	width: 1260px;
     background-color: pink;
 }
 
@@ -17,15 +17,14 @@ body {
     
 }
 #contenuPrincipal {
-    width: 800px;
+    width: 860px;
 	background-color: darkseagreen;
-    float: right;
-}
+    float: right;}
 
 .clear {
 	clear: both;
 }
-
+/*l'en-tête*/header {	background: url(../img/popolasca.jpg) center center no-repeat;	height:240px;}header h1 {	color: #fff;	margin: 10px;}
 /*les tableaux*/
 
 table {
@@ -35,12 +34,12 @@ caption {
     background:orange;
 }
 thead {
-     background: red;
+    background: red;
     color: white;
 }
 
 th {
-     background: red;
+    background: red;
     color: white;
 }
 

@@ -1,1 +1,1 @@
-<a href="index.php"><img src="../img/popolasca.jpg" alt="les aiguilles de Popolasca"></a>
+<a href="index.php"><h1>site admin : Patrick Isola</h1></a>

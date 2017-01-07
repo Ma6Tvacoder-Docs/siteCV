@@ -36,9 +36,10 @@
                 <?php include ("admin_menu.php"); ?>
             </div>
 		<div id="contenuPrincipal">VOIR
-            <div>
-                <form action="experiences.php" method="post">
-                    <table width="200px" border="1">
+          <form action="experiences.php" method="post">
+            <table width="250px" border="1">
+						<caption>légende du tableau</caption>
+                       <tbody>
                         <tr>
                             <td>Titre expérience</td>
                             <td><input type="text" name="titre_e" id="titre_e" size="50" required></td>
@@ -49,7 +50,7 @@
                         </tr>
                         <tr>
                             <td>Date</td>
-                            <td><input type="text" name="dates" id="dates" size="50" required></td>
+                            <td>&nbsp;</td>
                         </tr>
                         <tr>
                             <td>Description</td>
@@ -63,21 +64,22 @@
                         <tr>
                             <td colspan="2"><input type="submit" value="Insérer une expérience"></td>
                         </tr>
+						</tbody>
                     </table>
-                </form>
-            </div>
+                    <input type="text" name="dates" id="dates" size="50" required>
+            </form>
             <?php
                 $sql = $pdoCV->prepare("SELECT * FROM t_experiences"); // prépare la requête
                 $sql->execute(); // exécute-la
                 $nbr_experiences = $sql->rowCount(); //compte les lignes
             ?>
             <p>Il y a <?php echo $nbr_experiences; ?> expériences</p>
-            <table border="2">
+            <table width="400" border="2">
 				<caption>Liste des expériences</caption>
-				<thead>
+				<tr>
 					<th>Expériences</th>
 					<th>Suppression</th>	
-				</thead>
+				</tr>
 			<tr>
 			<?php while ($ligne = $sql->fetch()) { ?>
 					<td><?php echo $ligne['titre_e']; ?> <?php echo $ligne['dates']; ?></td>
@@ -85,10 +87,9 @@
 			</tr>
 			<?php } ?>
 			</table>
+			</div>
             <div class="clear"></div>
-        <footer>
-        <?php include ("admin_footer.php"); ?>
-        </footer>
-        </div>
+        <footer><?php include ("admin_footer.php"); ?></footer>
+		</div>
     </body>
 </html>

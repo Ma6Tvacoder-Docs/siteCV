@@ -58,20 +58,23 @@ if(isset($_GET['efface'])){
                 $nbr_competences = $sql->rowCount(); //compte les lignes
             ?>
             <p>Il y a <?php echo $nbr_competences; ?> compétences</p>
-            <table border="2">
+            <table width="500" border="2">
 				<caption>Liste des compétences</caption>
-				<thead>
-					<th>Compétences</th>
-					<th>Suppression</th>	
-				</thead>
+			<tbody>
+			<tr>
+				<th>Compétences</th>
+				<th>Suppression</th>
+			</tr>
 			<tr>
 			<?php while ($ligne = $sql->fetch()) { ?>
-					<td><?php echo $ligne['competence']; ?></td>
-					<td><a href="?efface=<?php echo $resultat['id_competence']; ?>">Supprimer l'enregistrement</a></td>
+				<td><?php echo $ligne['competence']; ?></td>
+				<td><a href="?efface=<?php echo $resultat['id_competence']; ?>">Supprimer l'enregistrement</a></td>
 			</tr>
 			<?php } ?>
+			</tbody>
 			</table>
-            <div class="clear"></div>
+			</div>
+       <div class="clear"></div>
         <footer>
         <?php include ("admin_footer.php"); ?>
         </footer>

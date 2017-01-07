@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
+-- version 4.4.10
 -- http://www.phpmyadmin.net
 --
--- Client :  127.0.0.1
--- Généré le :  Ven 06 Janvier 2017 à 17:20
--- Version du serveur :  10.1.8-MariaDB
--- Version de PHP :  5.6.14
+-- Client :  localhost:8889
+-- Généré le :  Sam 07 Janvier 2017 à 20:48
+-- Version du serveur :  5.5.42
+-- Version de PHP :  5.6.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -29,22 +29,25 @@ SET time_zone = "+00:00";
 DROP TABLE IF EXISTS `t_competences`;
 CREATE TABLE `t_competences` (
   `id_competence` int(11) NOT NULL,
-  `competence` text
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `competence` text,
+  `utilisateur_id` int(11) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `t_competences`
 --
 
-INSERT INTO `t_competences` (`id_competence`, `competence`) VALUES
-(1, 'HTML 5'),
-(2, 'coucou'),
-(3, 'hello'),
-(4, 'grrr'),
-(5, 'grrrr'),
-(6, 'qsdfqsf'),
-(7, 'qsdfqsdf'),
-(8, 'qsdfsdf');
+INSERT INTO `t_competences` (`id_competence`, `competence`, `utilisateur_id`) VALUES
+(1, 'HTML 5', 0),
+(2, 'coucou', 0),
+(3, 'hello', 0),
+(4, 'grrr', 0),
+(5, 'grrrr', 0),
+(6, 'qsdfqsf', 0),
+(7, 'qsdfqsdf', 0),
+(8, 'qsdfsdf', 0),
+(9, 'HTLM 5', 1),
+(10, 'JavaScript', 2);
 
 -- --------------------------------------------------------
 
@@ -56,30 +59,19 @@ DROP TABLE IF EXISTS `t_experiences`;
 CREATE TABLE `t_experiences` (
   `id_experience` int(11) NOT NULL,
   `titre_e` text NOT NULL,
-  `sous_titre_e` text,
   `dates` text,
+  `sous_titre_e` text,
   `description` text NOT NULL,
-  `id_competence` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `competence_id` int(11) NOT NULL,
+  `utilisateur_id` int(11) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `t_experiences`
 --
 
-INSERT INTO `t_experiences` (`id_experience`, `titre_e`, `sous_titre_e`, `dates`, `description`, `id_competence`) VALUES
-(1, 'qsfqsdf', 'qsdfsdf', 'qsdfqsf', 'qsdf', 0);
-
--- --------------------------------------------------------
-
---
--- Structure de la table `t_loisir`
---
-
-DROP TABLE IF EXISTS `t_loisir`;
-CREATE TABLE `t_loisir` (
-  `id_loisir` int(11) NOT NULL,
-  `loisir` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+INSERT INTO `t_experiences` (`id_experience`, `titre_e`, `dates`, `sous_titre_e`, `description`, `competence_id`, `utilisateur_id`) VALUES
+(1, 'qsfqsdf', 'qsdfqsf', 'qsdfsdf', 'qsdf', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -90,22 +82,70 @@ CREATE TABLE `t_loisir` (
 DROP TABLE IF EXISTS `t_loisirs`;
 CREATE TABLE `t_loisirs` (
   `id_loisir` int(11) NOT NULL,
-  `loisir` text NOT NULL
+  `loisir` text NOT NULL,
+  `utilisateur_id` int(11) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `t_loisirs`
+--
+
+INSERT INTO `t_loisirs` (`id_loisir`, `loisir`, `utilisateur_id`) VALUES
+(1, 'Cinéma', 1),
+(2, 'Guitare', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `t_portfolio`
+--
+
+DROP TABLE IF EXISTS `t_portfolio`;
+CREATE TABLE `t_portfolio` (
+  `id_portfolio` int(11) NOT NULL,
+  `nom_img` varchar(45) DEFAULT NULL,
+  `utilisateur_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `t_titre`
+-- Structure de la table `t_titres`
 --
 
-DROP TABLE IF EXISTS `t_titre`;
-CREATE TABLE `t_titre` (
+DROP TABLE IF EXISTS `t_titres`;
+CREATE TABLE `t_titres` (
+  `idt_titres` int(11) NOT NULL,
+  `titre_01` varchar(45) DEFAULT NULL,
+  `titre_03` varchar(45) DEFAULT NULL,
+  `titre_04` varchar(45) DEFAULT NULL,
+  `titre_05` varchar(45) DEFAULT NULL,
+  `titre_06` varchar(45) DEFAULT NULL,
+  `utilisateur_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `t_titre_cv`
+--
+
+DROP TABLE IF EXISTS `t_titre_cv`;
+CREATE TABLE `t_titre_cv` (
   `id_titre` smallint(6) NOT NULL,
   `titre_cv` text NOT NULL,
   `accroche` text NOT NULL,
-  `logo` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `logo` varchar(50) NOT NULL,
+  `utilisateur_id` int(11) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `t_titre_cv`
+--
+
+INSERT INTO `t_titre_cv` (`id_titre`, `titre_cv`, `accroche`, `logo`, `utilisateur_id`) VALUES
+(1, 'Formateur en infographie', 'coucou', 'test', 1),
+(2, 'Formateur en langages web et infographie', 'coucou aussi', 'test', 2);
 
 -- --------------------------------------------------------
 
@@ -115,7 +155,7 @@ CREATE TABLE `t_titre` (
 
 DROP TABLE IF EXISTS `t_utilisateur`;
 CREATE TABLE `t_utilisateur` (
-  `id_utilisateur` smallint(5) NOT NULL,
+  `id_utilisateur` int(11) NOT NULL,
   `prenom` varchar(25) NOT NULL,
   `nom` varchar(25) NOT NULL,
   `email` varchar(50) NOT NULL,
@@ -133,14 +173,15 @@ CREATE TABLE `t_utilisateur` (
   `ville` varchar(20) NOT NULL,
   `pays` varchar(25) NOT NULL,
   `note` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `t_utilisateur`
 --
 
 INSERT INTO `t_utilisateur` (`id_utilisateur`, `prenom`, `nom`, `email`, `telephone`, `mdp`, `pseudo`, `avatar`, `age`, `date_naissance`, `sexe`, `etat_civil`, `statut_marital`, `adresse`, `code_postal`, `ville`, `pays`, `note`) VALUES
-(1, 'Patrick', 'Isola', 'patrick.isola@lepoles.com', '06 63 74 11 35', 'dexvagw52', 'pisola', '', 52, '1964-11-18', 'Homme', 'M.', 'célibataire', '16, avenue de Laumière', '75019', 'Paris', 'France', 'ras');
+(1, 'Patrick', 'Isola', 'patrick.isola@lepoles.com', '06 63 74 11 35', 'dexvagw52', 'pisola', '', 52, '1964-11-18', 'Homme', 'M.', 'célibataire', '16, avenue de Laumière', '75019', 'Paris', 'France', 'ras'),
+(2, 'Philippe', 'Allouche', 'fil5@netcourrier.com', '07 68 55 86 30', 'pass', 'fil', 'test', 56, '1960-02-27', 'Homme', 'M.', 'célibataire', '35, rue Doudeauville', '75018', 'Paris', 'France', 'ras');
 
 --
 -- Index pour les tables exportées
@@ -157,13 +198,7 @@ ALTER TABLE `t_competences`
 --
 ALTER TABLE `t_experiences`
   ADD PRIMARY KEY (`id_experience`),
-  ADD KEY `id_competence` (`id_competence`);
-
---
--- Index pour la table `t_loisir`
---
-ALTER TABLE `t_loisir`
-  ADD PRIMARY KEY (`id_loisir`);
+  ADD KEY `id_competence` (`utilisateur_id`);
 
 --
 -- Index pour la table `t_loisirs`
@@ -172,9 +207,22 @@ ALTER TABLE `t_loisirs`
   ADD PRIMARY KEY (`id_loisir`);
 
 --
--- Index pour la table `t_titre`
+-- Index pour la table `t_portfolio`
 --
-ALTER TABLE `t_titre`
+ALTER TABLE `t_portfolio`
+  ADD PRIMARY KEY (`id_portfolio`),
+  ADD KEY `utilisateur_id_idx` (`utilisateur_id`);
+
+--
+-- Index pour la table `t_titres`
+--
+ALTER TABLE `t_titres`
+  ADD PRIMARY KEY (`idt_titres`);
+
+--
+-- Index pour la table `t_titre_cv`
+--
+ALTER TABLE `t_titre_cv`
   ADD PRIMARY KEY (`id_titre`);
 
 --
@@ -191,17 +239,47 @@ ALTER TABLE `t_utilisateur`
 -- AUTO_INCREMENT pour la table `t_competences`
 --
 ALTER TABLE `t_competences`
-  MODIFY `id_competence` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_competence` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT pour la table `t_experiences`
 --
 ALTER TABLE `t_experiences`
-  MODIFY `id_experience` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_experience` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT pour la table `t_loisirs`
+--
+ALTER TABLE `t_loisirs`
+  MODIFY `id_loisir` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT pour la table `t_portfolio`
+--
+ALTER TABLE `t_portfolio`
+  MODIFY `id_portfolio` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT pour la table `t_titres`
+--
+ALTER TABLE `t_titres`
+  MODIFY `idt_titres` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT pour la table `t_titre_cv`
+--
+ALTER TABLE `t_titre_cv`
+  MODIFY `id_titre` smallint(6) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT pour la table `t_utilisateur`
 --
 ALTER TABLE `t_utilisateur`
-  MODIFY `id_utilisateur` smallint(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_utilisateur` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+--
+-- Contraintes pour les tables exportées
+--
+
+--
+-- Contraintes pour la table `t_portfolio`
+--
+ALTER TABLE `t_portfolio`
+  ADD CONSTRAINT `utilisateur_id` FOREIGN KEY (`utilisateur_id`) REFERENCES `t_utilisateur` (`id_utilisateur`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

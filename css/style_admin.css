@@ -1,30 +1,112 @@
+@charset "UTF-8";
 
+/*patrick isola site cv exo phase de prod*/
+/*reset eric meyer*/
 
-/*mes styles*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/*mes styles pisola*/
 
 body {
-  	width: 1260px;
-    background-color: pink;
+  	margin: auto;
+	font: 1em Roboto, sans-serif;
+    background-color: #302A40;
 }
 
-#contenu{
-    background-color: lavender;
+header {
+	background: url(../img/popolasca.jpg) center center no-repeat;
+	height:240px;
+    margin-right: 10px;
+	margin-left: 10px;
+}
+
+#enveloppe{
+    width: 1260px;
+    margin-right: auto;
+	margin-left: auto;
+	margin-top: 20px;
+    background-color: #A791A5;
+    border: 1px solid red;
+    -webkit-box-shadow: 3px 3px 1px 1px #4262FF;
+    box-shadow: 3px 3px 1px 1px #4262FF;
 }
 #menu {
-    width: 400px;
-	background-color: red;
+    width: 380px;
+	background-color: #F1C0B6;
     float: left;
+    margin-left: 10px;
     
 }
 #contenuPrincipal {
     width: 860px;
-	background-color: darkseagreen;
-    float: right;}
+	background-color: #EFD3C2;
+    float: right;
+    margin-right: 10px;
+}
+
+footer {
+    margin-right: 10px;
+	margin-left: 10px;
+    margin-bottom: 10px;
+    color:white;
+    background: #C27B4A;
+}
 
 .clear {
 	clear: both;
 }
-/*l'en-tête*/header {	background: url(../img/popolasca.jpg) center center no-repeat;	height:240px;}header h1 {	color: #fff;	margin: 10px;}
+
+/*headder*/
+header h1 {
+	color: #fff;
+	margin: 10px;
+}
+
+/*footer*/
+
+
 /*les tableaux*/
 
 table {
@@ -39,7 +121,7 @@ thead {
 }
 
 th {
-    background: red;
+    background-color: goldenrod;
     color: white;
 }
 

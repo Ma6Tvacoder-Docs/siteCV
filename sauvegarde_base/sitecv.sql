@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.4.10
+-- version 4.5.1
 -- http://www.phpmyadmin.net
 --
--- Client :  localhost:8889
--- Généré le :  Sam 07 Janvier 2017 à 20:48
--- Version du serveur :  5.5.42
--- Version de PHP :  5.6.10
+-- Client :  127.0.0.1
+-- Généré le :  Lun 09 Janvier 2017 à 17:28
+-- Version du serveur :  10.1.8-MariaDB
+-- Version de PHP :  5.6.14
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -31,23 +31,15 @@ CREATE TABLE `t_competences` (
   `id_competence` int(11) NOT NULL,
   `competence` text,
   `utilisateur_id` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `t_competences`
 --
 
 INSERT INTO `t_competences` (`id_competence`, `competence`, `utilisateur_id`) VALUES
-(1, 'HTML 5', 0),
-(2, 'coucou', 0),
-(3, 'hello', 0),
-(4, 'grrr', 0),
-(5, 'grrrr', 0),
-(6, 'qsdfqsf', 0),
-(7, 'qsdfqsdf', 0),
-(8, 'qsdfsdf', 0),
 (9, 'HTLM 5', 1),
-(10, 'JavaScript', 2);
+(13, 'css 3', 1);
 
 -- --------------------------------------------------------
 
@@ -64,14 +56,14 @@ CREATE TABLE `t_experiences` (
   `description` text NOT NULL,
   `competence_id` int(11) NOT NULL,
   `utilisateur_id` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `t_experiences`
 --
 
 INSERT INTO `t_experiences` (`id_experience`, `titre_e`, `dates`, `sous_titre_e`, `description`, `competence_id`, `utilisateur_id`) VALUES
-(1, 'qsfqsdf', 'qsdfqsf', 'qsdfsdf', 'qsdf', 0, 0);
+(1, 'qsfqsdf', 'qsdfqsf', 'qsdfsdf', 'qsdf', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -84,7 +76,7 @@ CREATE TABLE `t_loisirs` (
   `id_loisir` int(11) NOT NULL,
   `loisir` text NOT NULL,
   `utilisateur_id` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `t_loisirs`
@@ -137,15 +129,15 @@ CREATE TABLE `t_titre_cv` (
   `accroche` text NOT NULL,
   `logo` varchar(50) NOT NULL,
   `utilisateur_id` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `t_titre_cv`
 --
 
 INSERT INTO `t_titre_cv` (`id_titre`, `titre_cv`, `accroche`, `logo`, `utilisateur_id`) VALUES
-(1, 'Formateur en infographie', 'coucou', 'test', 1),
-(2, 'Formateur en langages web et infographie', 'coucou aussi', 'test', 2);
+(1, 'Formateur en infographie', 'Longtemps je me suis couché de bonne heure et à peine ma bougie éteinte ...', 'sacpisola8080.jpg', 1),
+(2, 'Formateur en langages web et infographie', 'coucou aussi', 'fleur.jpg', 2);
 
 -- --------------------------------------------------------
 
@@ -173,7 +165,7 @@ CREATE TABLE `t_utilisateur` (
   `ville` varchar(20) NOT NULL,
   `pays` varchar(25) NOT NULL,
   `note` varchar(20) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `t_utilisateur`
@@ -239,17 +231,17 @@ ALTER TABLE `t_utilisateur`
 -- AUTO_INCREMENT pour la table `t_competences`
 --
 ALTER TABLE `t_competences`
-  MODIFY `id_competence` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
+  MODIFY `id_competence` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT pour la table `t_experiences`
 --
 ALTER TABLE `t_experiences`
-  MODIFY `id_experience` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `id_experience` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT pour la table `t_loisirs`
 --
 ALTER TABLE `t_loisirs`
-  MODIFY `id_loisir` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `id_loisir` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT pour la table `t_portfolio`
 --
@@ -264,12 +256,12 @@ ALTER TABLE `t_titres`
 -- AUTO_INCREMENT pour la table `t_titre_cv`
 --
 ALTER TABLE `t_titre_cv`
-  MODIFY `id_titre` smallint(6) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `id_titre` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT pour la table `t_utilisateur`
 --
 ALTER TABLE `t_utilisateur`
-  MODIFY `id_utilisateur` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `id_utilisateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- Contraintes pour les tables exportées
 --

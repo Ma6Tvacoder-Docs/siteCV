@@ -11,12 +11,12 @@
             }//ferme le if
         }//ferme if(isset)
 
-    //Suppression d'un enregistrement
+    //Suppression d'une compétence
     if(isset($_GET['id_competence'])){
-        $efface = $_GET['id_competence'];
-        $sql = " DELETE FROM t_competences WHERE id_competence = '$efface' ";
-        $pdoCV -> query($sql);// ou à la rigueur exec
-        //header('location: ../admin/competences.php'); le header ne sert que si je le fais depuis une autre page
+            $efface = $_GET['id_competence'];
+            $sql = " DELETE FROM t_competences WHERE id_competence = '$efface' ";
+            $pdoCV -> query($sql);// ou à la rigueur exec
+        header('location: ../admin/competences.php'); //le header pour revenir sur la page et ne plus avoir l'url avec le ?
     }
 ?>
 <!DOCTYPE html>
@@ -72,7 +72,7 @@
         <tr>
             <?php while ($ligne = $sql->fetch()) { ?>
             <td><?php echo $ligne['competence']; ?></td>
-            <td><a href="modifVOIR.php?id_competence=<?php echo $ligne['id_competence']; ?>">Modifier</a></td>
+            <td><a href="modif_competence.php?id_competence=<?php echo $ligne['id_competence']; ?>">Modifier</a></td>
             <td><a href="competences.php?id_competence=<?php echo $ligne['id_competence']; ?>">Supprimer</a></td>
         </tr>
             <?php } ?>

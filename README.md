@@ -14,6 +14,8 @@ descriptif rapide du site CV pour le chantier des numériques de Villeneuve-la-G
 - un site public
 - un site d'administration
 
+- des dossiers de sauvegarde, nommés "sauvegarde_XXX" pour y sauvegarder des infos, la BDD, des fichiers anciens, des requêtes etc.
+
 le site d'administration doit être sécurisé 
 - on doit pouvoir récupérer le mot de passe
 - on doit pouvoir insérer des données dans la base et en mettre à jour

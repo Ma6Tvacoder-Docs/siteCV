@@ -18,6 +18,14 @@
             $pdoCV -> query($sql);// ou à la rigueur exec
         header('location: ../admin/competences.php'); //le header pour revenir sur la page et ne plus avoir l'url avec le ?
     }
+
+    //mise à jour d'une compétence
+    if(isset($_GET['id_competence'])){
+        $miseajour = $_GET['id_competence'];
+        //$sql = " SELECT * FROM t_competences WHERE id_competence = '$miseajour' ";
+        $pdoCV -> query($sql);
+    header('location: ../admin/modif_competence.php'); 
+    }
 ?>
 <!DOCTYPE html>
 <html lang="fr">

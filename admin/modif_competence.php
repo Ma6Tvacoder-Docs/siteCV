@@ -1,19 +1,17 @@
 <?php require '../connexion/connexion.php' ?>
 <?php
+    $id_competence = $_GET['id_competence']; // par l'id_competence et $_GET
+    $sql=  $pdoCV->prepare(" SELECT * FROM t_competences WHERE id_competence = '$id_competence' ");
+    $sql->execute();//  
+    $ligne_competence = $sql->fetch();
+ 
     if(isset($_GET['id_competence'])){
-        $select_competence = $_GET['id_competence'];
-        $sql = $pdoCV->prepare (" SELECT * FROM t_competences WHERE id_competence = '$select_competence' ");
-        $sql->execute(); // exécute-la
+       $modif = $_GET['id_competence'];
+        $sql = " UPDATE FROM t_competences WHERE id_competence = '$modif' ";
         
-    } //fin du if isset
-    
-//    //modification d'une compétence
-//    if(isset($_GET['id_competence'])){
-//        $modif = $_GET['id_competence'];
-//        $sql = " UPDATE FROM t_competences WHERE id_competence = '$modif' ";
-//        $pdoCV -> query($sql);// ou à la rigueur exec
-//    header('location: ../admin/competences.php'); //le header ne sert que si je le fais depuis une autre page
-//    }
+       $pdoCV -> query($sql);// ou à la rigueur exec
+    header('location: ../admin/competences.php'); //le header ne sert que si je le fais depuis une autre page
+    }
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -37,12 +35,12 @@
     </div>
 <!--        fin de menu-->
     <div id="contenuPrincipal">
-        <h1>Admin : Les compétences</h1>
+        <h1>Admin : Modification d'une compétence</h1>
     <form action="competences.php" method="post">
         <table width="200px" border="1">
             <tr>
-                <td>Compétences</td>
-                <td><input type="text" name="competence" id="competence" size="50" required placeholder="<?php echo $ligne_competence['id_competence']; ?>"</td>
+                <td>Modification d'une compétence</td>
+                <td><input type="text" name="id_competence" id="<?php echo $ligne_competence['id_competence']; ?>" size="50" value="<?php echo $ligne_competence['competence']; ?>" required placeholder=""</td>
             </tr>
             <tr>
                 <td colspan="2"><input type="submit" value="Modifier la compétence"></td>

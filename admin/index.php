@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <?php /*SELECT SIMPLE UNE SEULE RÉPONSE */
-    $sql = $pdoCV->query(" SELECT * FROM t_utilisateur WHERE id_utilisateur ='2' ");
+    $sql = $pdoCV->query(" SELECT * FROM t_utilisateur WHERE id_utilisateur ='1' ");
     $ligne = $sql->fetch();
     ?>
     <title>Site CV : <?php echo $ligne['prenom'].' '.$ligne['nom']; ?></title>
@@ -13,14 +13,10 @@
 </head>
 <body>
     <div id="enveloppe">
-    <header>
-    <?php include ("admin_en_tete.php"); ?>
-    </header>
-<!--        fin de header-->
-    <h1>Espace administratif du site CV</h1>
-    <div id="menu">
-        <?php include ("admin_menu.php"); ?>
-    </div>
+        <header> <?php include ("admin_en_tete.php"); ?></header>
+    <!--            fin header-->
+        <div id="menu"><?php include ("admin_menu.php"); ?></div>
+    <!--        fin de menu-->
 <!--        fin de menu-->
     <div id="contenuPrincipal">
         <p><?php 
@@ -48,7 +44,7 @@
         <p>&nbsp;</p>
     <table>
         <?php /*SELECT SIMPLE UNE SEULE RÉPONSE */
-            $sql = $pdoCV->query(" SELECT * FROM t_titre_cv WHERE utilisateur_id ='2' ");
+            $sql = $pdoCV->query(" SELECT * FROM t_titre_cv WHERE utilisateur_id ='1' ");
             $ligne = $sql->fetch();
         ?>
         <caption>Titre et accroche du site CV</caption>

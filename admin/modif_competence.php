@@ -1,17 +1,22 @@
 <?php require '../connexion/connexion.php' ?>
 <?php
-    $id_competence = $_GET['id_competence']; // par l'id_competence et $_GET
-    $sql=  $pdoCV->prepare(" SELECT * FROM t_competences WHERE id_competence = '$id_competence' ");
-    $sql->execute();//  
-    $ligne_competence = $sql->fetch();
- 
-    if(isset($_GET['id_competence'])){
-       $modif = $_GET['id_competence'];
-        $sql = " UPDATE FROM t_competences WHERE id_competence = '$modif' ";
-        
-       $pdoCV -> query($sql);// ou à la rigueur exec
+
+//mise à jour d'une compétence
+    if(isset($_POST['id_competence'])){
+    
+        //$id_competence = $_POST['id_competence'];
+    $competence = addslashes($_POST['competence']); 
+    $pdoCV->exec(" UPDATE t_competences SET competence='$competence' WHERE id_competence='$id_competence' ");
+
     header('location: ../admin/competences.php'); //le header ne sert que si je le fais depuis une autre page
-    }
+    exit();
+}
+
+    $id_competence = $_GET['id_competence']; // par l'id_competence et $_GET
+
+    $sql=  $pdoCV->query(" SELECT * FROM t_competences WHERE id_competence = '$id_competence' ");
+    $ligne_competence = $sql->fetch();
+
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -36,14 +41,14 @@
 <!--        fin de menu-->
     <div id="contenuPrincipal">
         <h1>Admin : Modification d'une compétence</h1>
-    <form action="competences.php" method="post">
+    <form action="modif_competence.php" method="post">
         <table width="200px" border="1">
             <tr>
                 <td>Modification d'une compétence</td>
-                <td><input type="text" name="id_competence" id="<?php echo $ligne_competence['id_competence']; ?>" size="50" value="<?php echo $ligne_competence['competence']; ?>" required placeholder=""</td>
+                <td><input type="text" name="id_competence" size="50" value="<?php echo $ligne_competence['competence']; ?>" required placeholder=""</td>
             </tr>
             <tr>
-                <td colspan="2"><input type="submit" value="Modifier la compétence"></td>
+                <td colspan="2"><input type="submit" value="mettre à jour"></td>
             </tr>
         </table>
     </form>

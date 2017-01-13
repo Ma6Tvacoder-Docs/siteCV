@@ -19,26 +19,24 @@
 <head>
 <meta charset="utf-8">
     <?php /*SELECT SIMPLE UNE SEULE RÉPONSE */
-            $sql = $pdoCV->query(" SELECT * FROM t_utilisateur");
+            $sql = $pdoCV->query(" SELECT * FROM t_utilisateur WHERE id_utilisateur = '1' ");
             $ligne = $sql->fetch();
     ?>
-	<title>Site CV : compétences : <?php echo $ligne['prenom'].' '.$ligne['nom']; ?></title>
+	<title>Site CV : expériences : <?php echo $ligne['prenom'].' '.$ligne['nom']; ?></title>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,700,700italic,400italic' rel='stylesheet' type='text/css'>
 	<link type="text/css" href="../css/style_admin.css" rel="stylesheet">
 </head>
     <body>
-        <div id="contenu">
-		<header>
-            <?php include ("admin_en_tete.php"); ?>
-		</header>
-            <h1>Les expériences</h1>
-            <div id="menu">
-                <h2>Connexion : déconnexion</h2>
-                <?php include ("admin_menu.php"); ?>
-            </div>
-		<div id="contenuPrincipal">VOIR
+        <div id="enveloppe">
+		<header><?php include ("admin_en_tete.php"); ?></header>
+<!--            fin header-->
+            <div id="menu"><?php include ("admin_menu.php"); ?></div>
+<!--            fin de menu-->
+		<div id="contenuPrincipal">
+            <h1>Admin : les expériences</h1>
           <form action="experiences.php" method="post">
             <table width="250px" border="1">
-						<caption>légende du tableau</caption>
+                <caption>Insertion d'une nouvelle expérience</caption>
                        <tbody>
                         <tr>
                             <td>Titre expérience</td>
@@ -59,7 +57,7 @@
                         <tr>
                         <tr>
                             <td>Compétence</td>
-                            <td><input type="text" name="id_competence" id="id_competence" size="50" required></td>
+                            <td><input type="text" name="id_competence" id="id_competence" size="50" placeholder="numero de la compétence" required></td>
                         </tr>
                         <tr>
                             <td colspan="2"><input type="submit" value="Insérer une expérience"></td>
@@ -68,6 +66,7 @@
                     </table>
                     <input type="text" name="dates" id="dates" size="50" required>
             </form>
+<!--            fin form insertion-->
             <?php
                 $sql = $pdoCV->prepare("SELECT * FROM t_experiences"); // prépare la requête
                 $sql->execute(); // exécute-la
@@ -82,14 +81,19 @@
 				</tr>
 			<tr>
 			<?php while ($ligne = $sql->fetch()) { ?>
-					<td><?php echo $ligne['titre_e']; ?> <?php echo $ligne['dates']; ?></td>
+					<td><?php echo $ligne['titre_e']; ?> <?php echo $ligne['dates_e']; ?></td>
 					<td><a href="#">Supprimer l'enregistrement</a></td>
 			</tr>
 			<?php } ?>
+<!--                fin de while-->
 			</table>
 			</div>
+<!--            fin de contenu principal-->
             <div class="clear"></div>
+<!--            fin de clear-->
         <footer><?php include ("admin_footer.php"); ?></footer>
+<!--            fin de footer-->
 		</div>
+<!--        fin de enveloppe-->
     </body>
 </html>

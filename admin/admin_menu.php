@@ -11,6 +11,5 @@
             <li><a href="competences.php">Compétences</a></li>
             <li><a href="loisirs.php">Loisirs</a></li>
             <li><a href="experiences.php">Expériences</a></li>
-            <li><a href="experiences.php">Expériences</a></li>
         </ul>
 </ul>

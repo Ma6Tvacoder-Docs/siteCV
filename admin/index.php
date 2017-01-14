@@ -44,6 +44,10 @@ if(isset($_GET['deconnect'])){
     <!--        fin de menu-->
 <!--        fin de menu-->
     <div id="contenuPrincipal">
+       <?php  
+		$sql = $pdoCV->query(" SELECT * FROM t_utilisateur WHERE id_utilisateur ='$id_utilisateur' ");
+    $ligne = $sql->fetch();
+		?>
         <p><?php 
         echo 'Hola '.$prenom.' '.$nom.'<br><img src="../img/" alt="">';
         ?>
@@ -68,10 +72,10 @@ if(isset($_GET['deconnect'])){
     </table>
         <p>&nbsp;</p>
     <table>
-        <?php /*SELECT SIMPLE UNE SEULE RÉPONSE */
-            $sql = $pdoCV->query(" SELECT * FROM t_titre_cv WHERE utilisateur_id ='1' ");
-            $ligne = $sql->fetch();
-        ?>
+       <?php  
+		$sql = $pdoCV->query(" SELECT * FROM t_titre_cv WHERE utilisateur_id ='$id_utilisateur' ");
+    $ligne = $sql->fetch();
+		?>
         <caption>Titre et accroche du site CV</caption>
         <tr>
             <th>Titre CV</th>

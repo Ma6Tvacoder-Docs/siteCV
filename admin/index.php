@@ -1,13 +1,38 @@
 <?php require '../connexion/connexion.php' ?>
+<?php
+	
+session_start();// à mettre dans toutes les pages SESSION et identification
+// faire ensuite le require si on veut sur toutes les pages admin
+	if(isset($_SESSION['connexion']) && $_SESSION['connexion']=='connecté'){ //si la personne est connectée et la valeur est bien celle de la page authentification
+			$id_utilisateur=$_SESSION['id_utilisateur'];
+			$prenom=$_SESSION['prenom'];	
+			$nom=$_SESSION['nom'];	
+		//echo $_SESSION['connexion']; vérification de la connexion
+	}else{// l'utilisateur n'est pas connecté
+		header('location:authentification.php');
+	}
+
+if(isset($_GET['deconnect'])){
+	
+	$_SESSION['connexion']='';//on vide les variables de session  
+	$_SESSION['id_utilisateur']='';
+	$_SESSION['prenom']='';	
+	$_SESSION['nom']='';
+	
+	unset($_SESSION['connexion']); // on supprime cette variable
+	
+	session_destroy();// on détruit la session
+	
+	header('location:../index.php');
+}
+
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="utf-8">
-    <?php /*SELECT SIMPLE UNE SEULE RÉPONSE */
-    $sql = $pdoCV->query(" SELECT * FROM t_utilisateur WHERE id_utilisateur ='1' ");
-    $ligne = $sql->fetch();
-    ?>
-    <title>Site CV : <?php echo $ligne['prenom'].' '.$ligne['nom']; ?></title>
+    
+    <title>Site CV : <?php echo $_SESSION['prenom']; ?></title>
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,700,700italic,400italic' rel='stylesheet' type='text/css'>
     <link type="text/css" href="../css/style_admin.css" rel="stylesheet">
 </head>
@@ -20,7 +45,7 @@
 <!--        fin de menu-->
     <div id="contenuPrincipal">
         <p><?php 
-        echo 'Hola '.$ligne['prenom'].' '.$ligne['nom'].'<br><img src="../img/" alt="">';
+        echo 'Hola '.$prenom.' '.$nom.'<br><img src="../img/" alt="">';
         ?>
         </p>
         <table width="500px" border="1">

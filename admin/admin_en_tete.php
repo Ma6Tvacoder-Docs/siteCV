@@ -1,1 +1,1 @@
-<a href="index.php"><h1>site admin : Patrick Isola</h1></a>
+<a href="index.php"><h1>site admin : <?php echo $prenom.' '.$nom; ?></h1></a>

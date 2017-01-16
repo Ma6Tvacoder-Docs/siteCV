@@ -28,16 +28,17 @@ if(isset($_GET['deconnect'])){
 
 ?>
 <?php
+    //Gestion des contenus
     //Insertion d'une compétence
         if(isset($_POST['competence'])){// si on crée une nouvelle compétence
             if($_POST['competence']!=''){// si competence n'est pas vide
             $competence = addslashes($_POST['competence']);
 
-            $pdoCV->exec(" INSERT INTO t_competences VALUES (NULL, '$competence', '1' ) ");
+            $pdoCV->exec(" INSERT INTO t_competences VALUES (NULL, '$competence', '1' ) ");// mettre id_utilisateur
             header("location: ../admin/competences.php");
             exit();
             }//ferme le if
-        }//ferme if(isset)
+        }//ferme if(isset) 
 
     //Suppression d'une compétence
     if(isset($_GET['id_competence'])){

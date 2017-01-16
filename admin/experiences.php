@@ -1,18 +1,27 @@
 <?php require '../connexion/connexion.php' ?>
 <?php
+    //insertion d'une expérience
     if(isset($_POST['titre_e'])){// si on crée une nouvelle expérience et son titre
-        if($_POST['titre_e']!='' && $_POST['sous_titre_e']!='' && $_POST['dates']!='' && $_POST['description']!='' && $_POST['id_competence']!=''){// si competence n'est pas vide
+        if($_POST['titre_e']!='' && $_POST['sous_titre_e']!='' && $_POST['dates_e']!='' && $_POST['description_e']!='' ){// si un champs n'est pas vide
             $titre_e = addslashes($_POST['titre_e']);
             $sous_titre_e = addslashes($_POST['sous_titre_e']);
-            $dates = addslashes($_POST['dates']);
-            $description = addslashes($_POST['description']);
-            $id_competence = addslashes($_POST['id_competence']);
+            $dates_e = addslashes($_POST['dates_e']);
+            $description_e = addslashes($_POST['description_e']);
             
-        $pdoCV->exec(" INSERT INTO t_experiences VALUES (NULL, '$titre_e', '$sous_titre_e', '$dates', '$description', '$id_competence' ) ");
+        $pdoCV->exec(" INSERT INTO t_experiences VALUES (NULL, '$titre_e', '$sous_titre_e', '$dates_e', '$description_e', '1' ) ");
             header("location: ../admin/experiences.php");
                 exit();
             }//ferme le if
-        }//ferme if(isset)    
+        }//ferme if(isset)
+
+//Suppression d'une compétence
+    if(isset($_GET['id_experience'])){
+            $efface = $_GET['id_experience'];
+            $sql = " DELETE FROM t_experiences WHERE id_experience = '$efface' ";
+            $pdoCV -> query($sql);// ou à la rigueur exec
+        header('location: ../admin/experiences.php'); //le header pour revenir sur la page et ne plus avoir l'url avec le ?
+    }
+
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -47,28 +56,23 @@
                             <td><input type="text" name="sous_titre_e" id="sous_titre_e" size="50" required></td>
                         </tr>
                         <tr>
-                            <td>Date</td>
-                            <td>&nbsp;</td>
+                            <td>Dates</td>
+                            <td><input type="text" name="dates_e" id="dates_e" size="50" required></td>
                         </tr>
                         <tr>
                             <td>Description</td>
-                            <td><textarea name="description" id="description" size="50" required></textarea></td>
+                            <td><textarea name="description_e" id="description_e" size="100" cols="80" rows="10" required></textarea></td>
                         </tr>
                         <tr>
-                        <tr>
-                            <td>Compétence</td>
-                            <td><input type="text" name="id_competence" id="id_competence" size="50" placeholder="numero de la compétence" required></td>
-                        </tr>
                         <tr>
                             <td colspan="2"><input type="submit" value="Insérer une expérience"></td>
                         </tr>
 						</tbody>
                     </table>
-                    <input type="text" name="dates" id="dates" size="50" required>
             </form>
 <!--            fin form insertion-->
             <?php
-                $sql = $pdoCV->prepare("SELECT * FROM t_experiences"); // prépare la requête
+                $sql = $pdoCV->prepare("SELECT * FROM t_experiences WHERE utilisateur_id = '1' "); // prépare la requête
                 $sql->execute(); // exécute-la
                 $nbr_experiences = $sql->rowCount(); //compte les lignes
             ?>
@@ -82,7 +86,8 @@
 			<tr>
 			<?php while ($ligne = $sql->fetch()) { ?>
 					<td><?php echo $ligne['titre_e']; ?> <?php echo $ligne['dates_e']; ?></td>
-					<td><a href="#">Supprimer l'enregistrement</a></td>
+					<td><a href="experiences.php?id_experience=<?php echo $ligne['id_experience']; ?>">Supprimer</a></td>
+                    <td><a href="modif_experience.php?id_experience=<?php echo $ligne['id_experience']; ?>">Modifier</a></td>
 			</tr>
 			<?php } ?>
 <!--                fin de while-->

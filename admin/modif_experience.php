@@ -11,9 +11,9 @@
     exit();
 }
     //je récupère la compétence
-    $id_competence = $_GET['id_competence']; // par l'id_competence et $_GET
-    $sql=  $pdoCV->query(" SELECT * FROM t_competences WHERE id_competence = '$id_competence' ");
-    $ligne_competence = $sql->fetch();
+    $id_experience = $_GET['id_experience']; // par l'id_competence et $_GET
+    $sql=  $pdoCV->query(" SELECT * FROM t_experiences WHERE id_experience = '$id_experience' ");
+    $ligne_experience = $sql->fetch();
 
 ?>
 <!DOCTYPE html>
@@ -38,14 +38,14 @@
     </div>
 <!--        fin de menu-->
     <div id="contenuPrincipal">
-        <h1>Admin : Modification d'une compétence</h1>
+        <h1>Admin : Modification d'une expérience</h1>
     <form action="modif_competence.php" method="post">
         <table width="200px" border="1">
             <tr>
-                <td>Modification d'une compétence</td>
+                <td>Modification d'une expérience</td>
                 <td>
-                <input type="text" name="competence" size="50" value="<?php echo $ligne_competence['competence']; ?>" required >
-                <input hidden name="id_competence" value="<?php echo $ligne_competence['id_competence']; ?>">
+                <input type="text" name="titre_e" size="50" value="<?php echo $ligne_experience['titre_e']; ?>" required >
+                <input hidden name="id_experience" value="<?php echo $ligne_experience['id_experience']; ?>">
                 </td>
             </tr>
             <tr>

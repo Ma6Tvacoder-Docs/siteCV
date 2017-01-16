@@ -58,8 +58,8 @@ if(isset($_POST['connexion'])){// on envoie le formulaire avec le name du bouton
               <fieldset>
     					<legend>
                    		Je m'identifie
-                    	<?php echo "<br>".$msg_connexion_err; ?>
-                    	<?php echo "<br>".$msg_connexion_ok; ?>
+                    	<?php echo "<br>"//.$msg_connexion_err; ?>
+                    	<?php echo "<br>"//.$msg_connexion_ok; ?>
                     </legend>
                       <label for="email">Email </label>
 					   <input name="email" type="email" required id="email" placeholder="rentrez votre email" tabindex="1" size="25" aria-required="true">

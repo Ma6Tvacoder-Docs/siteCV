@@ -34,6 +34,8 @@
 	<title>Site CV : expériences : <?php echo $ligne['prenom'].' '.$ligne['nom']; ?></title>
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,700,700italic,400italic' rel='stylesheet' type='text/css'>
 	<link type="text/css" href="../css/style_admin.css" rel="stylesheet">
+<!--    CKEditor-->
+        <script src="../ckeditor/ckeditor.js"></script>
 </head>
     <body>
         <div id="enveloppe">
@@ -44,7 +46,7 @@
 		<div id="contenuPrincipal">
             <h1>Admin : les expériences</h1>
           <form action="experiences.php" method="post">
-            <table width="250px" border="1">
+            <table border="1">
                 <caption>Insertion d'une nouvelle expérience</caption>
                        <tbody>
                         <tr>
@@ -61,7 +63,11 @@
                         </tr>
                         <tr>
                             <td>Description</td>
-                            <td><textarea name="description_e" id="description_e" size="100" cols="80" rows="10" required></textarea></td>
+                            <td><textarea name="description_e" id="editor1" cols="80" rows="10" required></textarea></td>
+                            <script>
+                                // Replace the <textarea id="editor1"> with a CKEditor instance, using default configuration.
+                                CKEDITOR.replace( 'editor1' );
+                            </script>
                         </tr>
                         <tr>
                         <tr>
@@ -77,18 +83,20 @@
                 $nbr_experiences = $sql->rowCount(); //compte les lignes
             ?>
             <p>Il y a <?php echo $nbr_experiences; ?> expériences</p>
-            <table width="400" border="2">
+            <table width="600" border="2">
 				<caption>Liste des expériences</caption>
 				<tr>
 					<th>Expériences</th>
-					<th>Suppression</th>	
+					<th>Texte</th>
+                    <th>Action</th>
 				</tr>
 			<tr>
 			<?php while ($ligne = $sql->fetch()) { ?>
-					<td><?php echo $ligne['titre_e']; ?> <?php echo $ligne['dates_e']; ?></td>
-					<td><a href="experiences.php?id_experience=<?php echo $ligne['id_experience']; ?>">Supprimer</a></td>
-                    <td><a href="modif_experience.php?id_experience=<?php echo $ligne['id_experience']; ?>">Modifier</a></td>
-			</tr>
+					<td><?php echo $ligne['titre_e'].' <br>'.$ligne['sous_titre_e'].'<br>'.$ligne['dates_e']; ?></td>
+                <td><?php echo $ligne['description_e']; ?> </td>
+                <td><p><a href="experiences.php?id_experience=<?php echo $ligne['id_experience']; ?>">Supprimer</a><br><a href="modif_experience.php?id_experience=<?php echo $ligne['id_experience']; ?>">Modifier</a></p></td>
+            </tr>
+            
 			<?php } ?>
 <!--                fin de while-->
 			</table>

@@ -15,7 +15,7 @@
     $sql=  $pdoCV->query(" SELECT * FROM t_competences WHERE id_competence = '$id_competence' ");
     $ligne_competence = $sql->fetch();
 
-?>
+?> 
 <!DOCTYPE html>
 <html lang="fr">
 <head>

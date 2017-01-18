@@ -7,11 +7,11 @@ session_start();// à mettre dans toutes les pages SESSION et identification
 			$id_utilisateur=$_SESSION['id_utilisateur'];
 			$prenom=$_SESSION['prenom'];	
 			$nom=$_SESSION['nom'];	
-		//echo $_SESSION['connexion']; vérification de la connexion
+		echo $_SESSION['connexion']; //vérification de la connexion
 	}else{// l'utilisateur n'est pas connecté
 		header('location:authentification.php');
 	}
-
+//pour se déconnecter
 if(isset($_GET['deconnect'])){
 	
 	$_SESSION['connexion']='';//on vide les variables de session  
@@ -20,7 +20,7 @@ if(isset($_GET['deconnect'])){
 	$_SESSION['nom']='';
 	
 	unset($_SESSION['connexion']); // on supprime cette variable
-	
+    
 	session_destroy();// on détruit la session
 	
 	header('location:../index.php');
@@ -32,7 +32,7 @@ if(isset($_GET['deconnect'])){
 <head>
     <meta charset="utf-8">
     
-    <title>Site CV : <?php echo $_SESSION['prenom']; ?></title>
+    <title>Site CV : <?php echo $_SESSION['prenom'].' '.$_SESSION['nom']; ?></title>
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,700,700italic,400italic' rel='stylesheet' type='text/css'>
     <link type="text/css" href="../css/style_admin.css" rel="stylesheet">
 </head>
@@ -46,7 +46,7 @@ if(isset($_GET['deconnect'])){
     <div id="contenuPrincipal">
        <?php  
 		$sql = $pdoCV->query(" SELECT * FROM t_utilisateur WHERE id_utilisateur ='$id_utilisateur' ");
-    $ligne = $sql->fetch();
+        $ligne = $sql->fetch();
 		?>
         <p><?php 
         echo 'Hola '.$prenom.' '.$nom.'<br><img src="../img/" alt="">';

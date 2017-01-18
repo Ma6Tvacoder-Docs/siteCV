@@ -1,10 +1,6 @@
 <div id="compte">
-        <?php if(isset($_SESSION['connexion'])){ 
-		echo '<p><a href="index.php?deconnect=oui">Déconnexion</a> </p>'; 
-				} ?>
-        
+		<p><a href="index.php?deconnect=oui">Déconnexion</a></p>
 </div>
-
 <!--faire page de déconnexion-->
 <ul>
     <li>Utilisateur</li>
@@ -20,6 +16,5 @@
             <li><a href="experiences.php">Expériences</a></li>
             <li><a href="loisirs.php">Loisirs</a></li>
             <li><a href="formations.php">Formations</a></li>
-            
         </ul>
 </ul>

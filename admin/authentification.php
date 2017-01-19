@@ -3,11 +3,13 @@
 	
 session_start();// à mettre dans toutes les pages SESSION et identification
 
+$msg_connexion_err=''; //on intialise la variable en cas d'erreur
+
 if(isset($_POST['connexion'])){// on envoie le formulaire avec le name du bouton, connexion on a cliqué sur le bouton
 	$email=addslashes($_POST['email']);
 	$mdp=addslashes($_POST['mdp']);
 	
-		$sql = $pdoCV->prepare("SELECT * FROM t_utilisateur WHERE email='$email' AND mdp='$mdp'  "); //on vérifie le courriel et le mot de passe et … 
+		$sql = $pdoCV->prepare("SELECT * FROM t_utilisateurs WHERE email='$email' AND mdp='$mdp'  "); //on vérifie le courriel et le mot de passe et … 
 		$sql->execute(); 
 		$nbr_utilisateur= $sql->rowCount(); // … on compte, et s'il y est, le compte répond 1 sinon, le compte répond 0 (est-ce le vrai admin ou pas ?)
 
@@ -30,11 +32,7 @@ if(isset($_POST['connexion'])){// on envoie le formulaire avec le name du bouton
 <html lang="fr">
 <head>
     <meta charset="utf-8">
-    <?php /*SELECT SIMPLE UNE SEULE RÉPONSE */
-    //$sql = $pdoCV->query(" SELECT * FROM t_utilisateur WHERE id_utilisateur ='1' ");
-//    $ligne = $sql->fetch();
-    ?>
-    <title>Site CV : <?php echo $ligne['prenom'].' '.$ligne['nom']; ?></title>
+    <title>Site CV : authentification</title>
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,700,700italic,400italic' rel='stylesheet' type='text/css'>
     <link type="text/css" href="../css/style_admin.css" rel="stylesheet">
 </head>
@@ -51,8 +49,7 @@ if(isset($_POST['connexion'])){// on envoie le formulaire avec le name du bouton
               <fieldset>
     				<legend>
                    		Je m'identifie
-                    	<?php //echo "<br>".$msg_connexion_err; ?>
-                    	<?php //echo "<br>".$msg_connexion_ok; ?>
+                    	<?php echo '<br>'.$msg_connexion_err; ?>
                     </legend>
                       <label for="email">Email // </label>
 					   <input name="email" type="email" required id="email" placeholder="rentrez votre email" tabindex="1" size="35">

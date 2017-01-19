@@ -32,7 +32,7 @@ if(isset($_GET['deconnect'])){
 <head>
     <meta charset="utf-8">
         <?php /*SELECT SIMPLE UNE SEULE RÉPONSE */
-            $sql = $pdoCV->query(" SELECT * FROM t_utilisateur WHERE id_utilisateur ='1' ");
+            $sql = $pdoCV->query(" SELECT * FROM t_utilisateurs WHERE id_utilisateur ='1' ");
             $ligne = $sql->fetch();
         ?>
     <title>Site CV : <?php echo $ligne['prenom'].' '.$ligne['nom']; ?></title>

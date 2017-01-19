@@ -49,7 +49,7 @@ if(isset($_GET['deconnect'])){
 <head>
 <meta charset="utf-8">
 <?php /*SELECT SIMPLE UNE SEULE RÉPONSE */
-    $sql = $pdoCV->query(" SELECT * FROM t_utilisateur");
+    $sql = $pdoCV->query(" SELECT * FROM t_utilisateurs");
     $ligne = $sql->fetch();
 ?>
 <title>Site CV : compétences : <?php echo $ligne['prenom'].' '.$ligne['nom']; ?></title>

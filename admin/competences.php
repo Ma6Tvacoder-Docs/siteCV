@@ -34,7 +34,7 @@ if(isset($_GET['deconnect'])){
             if($_POST['competence']!=''){// si competence n'est pas vide
             $competence = addslashes($_POST['competence']);
 
-            $pdoCV->exec(" INSERT INTO t_competences VALUES (NULL, '$competence', '1' ) ");// mettre id_utilisateur
+            $pdoCV->exec(" INSERT INTO t_competences VALUES (NULL, '$competence', '$id_utilisateur' ) ");// mettre id_utilisateur
             header("location: ../admin/competences.php");
             exit();
             }//ferme le if
@@ -54,11 +54,11 @@ if(isset($_GET['deconnect'])){
 <head>
 <meta charset="utf-8">
 <?php /*SELECT SIMPLE UNE SEULE RÉPONSE */
-    $sql = $pdoCV->query(" SELECT * FROM t_utilisateur WHERE id_utilisateur = '1' ");
+    $sql = $pdoCV->query(" SELECT * FROM t_utilisateurs WHERE id_utilisateur = '1' ");
     $ligne = $sql->fetch();
 ?>
-<title>Site CV : compétences : <?php echo $ligne['prenom'].' '.$ligne['nom']; ?></title>
-<link href='https://fonts.googleapis.com/css?family=Roboto:400,700,700italic,400italic' rel='stylesheet' type='text/css'>
+<title>Site CV admin : <?php echo $_SESSION['prenom'].' '.$_SESSION['nom']; ?></title>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,700,700italic,400italic' rel='stylesheet' type='text/css'>
 <link type="text/css" href="../css/style_admin.css" rel="stylesheet">
 </head>
 <body>

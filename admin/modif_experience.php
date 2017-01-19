@@ -1,5 +1,33 @@
 <?php require '../connexion/connexion.php' ?>
 <?php
+	
+session_start();// à mettre dans toutes les pages SESSION et identification
+// faire ensuite le require si on veut sur toutes les pages admin
+	if(isset($_SESSION['connexion']) && $_SESSION['connexion']=='connecté'){ //si la personne est connectée et la valeur est bien celle de la page authentification
+			$id_utilisateur=$_SESSION['id_utilisateur'];
+			$prenom=$_SESSION['prenom'];	
+			$nom=$_SESSION['nom'];	
+		echo $_SESSION['connexion']; //vérification de la connexion
+	}else{// l'utilisateur n'est pas connecté
+		header('location:authentification.php');
+	}
+//pour se déconnecter
+if(isset($_GET['deconnect'])){
+	
+	$_SESSION['connexion']='';//on vide les variables de session  
+	$_SESSION['id_utilisateur']='';
+	$_SESSION['prenom']='';	
+	$_SESSION['nom']='';
+	
+	unset($_SESSION['connexion']); // on supprime cette variable
+    
+	session_destroy();// on détruit la session
+	
+	header('location:../index.php');
+}
+
+?>
+<?php
 //gestion des contenus mise à jour d'une expérience
     if(isset($_POST['titre_e'])){//par le nom du premier input 
     
@@ -26,7 +54,7 @@
 <head>
 <meta charset="utf-8">
 <?php /*SELECT SIMPLE UNE SEULE RÉPONSE */
-    $sql = $pdoCV->query(" SELECT * FROM t_utilisateur");
+    $sql = $pdoCV->query(" SELECT * FROM t_utilisateurs");
     $ligne = $sql->fetch();
 ?>
 <title>Site CV : compétences : <?php echo $ligne['prenom'].' '.$ligne['nom']; ?></title>

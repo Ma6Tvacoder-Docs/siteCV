@@ -7,7 +7,7 @@ session_start();// à mettre dans toutes les pages SESSION et identification
 			$id_utilisateur=$_SESSION['id_utilisateur'];
 			$prenom=$_SESSION['prenom'];	
 			$nom=$_SESSION['nom'];	
-		echo $_SESSION['connexion']; //vérification de la connexion
+		//echo $_SESSION['connexion']; //vérification de la connexion
 	}else{// l'utilisateur n'est pas connecté
 		header('location:authentification.php');
 	}
@@ -32,7 +32,7 @@ if(isset($_GET['deconnect'])){
 <head>
     <meta charset="utf-8">
     
-    <title>Site CV : <?php echo $_SESSION['prenom'].' '.$_SESSION['nom']; ?></title>
+    <title>Site CV admin : <?php echo $_SESSION['prenom'].' '.$_SESSION['nom']; ?></title>
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,700,700italic,400italic' rel='stylesheet' type='text/css'>
     <link type="text/css" href="../css/style_admin.css" rel="stylesheet">
 </head>
@@ -45,7 +45,7 @@ if(isset($_GET['deconnect'])){
 <!--        fin de menu-->
     <div id="contenuPrincipal">
        <?php  
-		$sql = $pdoCV->query(" SELECT * FROM t_utilisateur WHERE id_utilisateur ='$id_utilisateur' ");
+		$sql = $pdoCV->query(" SELECT * FROM t_utilisateurs WHERE id_utilisateur ='$id_utilisateur' ");
         $ligne = $sql->fetch();
 		?>
         <p><?php 

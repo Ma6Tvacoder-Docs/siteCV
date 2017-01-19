@@ -1,5 +1,33 @@
 <?php require '../connexion/connexion.php' ?>
 <?php
+	
+session_start();// à mettre dans toutes les pages SESSION et identification
+// faire ensuite le require si on veut sur toutes les pages admin
+	if(isset($_SESSION['connexion']) && $_SESSION['connexion']=='connecté'){ //si la personne est connectée et la valeur est bien celle de la page authentification
+			$id_utilisateur=$_SESSION['id_utilisateur'];
+			$prenom=$_SESSION['prenom'];	
+			$nom=$_SESSION['nom'];	
+		//echo $_SESSION['connexion']; //vérification de la connexion
+	}else{// l'utilisateur n'est pas connecté
+		header('location:authentification.php');
+	}
+//pour se déconnecter
+if(isset($_GET['deconnect'])){
+	
+	$_SESSION['connexion']='';//on vide les variables de session  
+	$_SESSION['id_utilisateur']='';
+	$_SESSION['prenom']='';	
+	$_SESSION['nom']='';
+	
+	unset($_SESSION['connexion']); // on supprime cette variable
+    
+	session_destroy();// on détruit la session
+	
+	header('location:../index.php');
+}
+
+?>
+<?php
     //insertion d'une expérience
     if(isset($_POST['titre_e'])){// si on crée une nouvelle expérience et son titre
         if($_POST['titre_e']!='' && $_POST['sous_titre_e']!='' && $_POST['dates_e']!='' && $_POST['description_e']!='' ){// si un champs n'est pas vide
@@ -8,7 +36,7 @@
             $dates_e = addslashes($_POST['dates_e']);
             $description_e = addslashes($_POST['description_e']);
             
-        $pdoCV->exec(" INSERT INTO t_experiences VALUES (NULL, '$titre_e', '$sous_titre_e', '$dates_e', '$description_e', '1' ) ");
+        $pdoCV->exec(" INSERT INTO t_experiences VALUES (NULL, '$titre_e', '$sous_titre_e', '$dates_e', '$description_e', '$id_utilisateur' ) ");
             header("location: ../admin/experiences.php");
                 exit();
             }//ferme le if
@@ -28,10 +56,10 @@
 <head>
 <meta charset="utf-8">
     <?php /*SELECT SIMPLE UNE SEULE RÉPONSE */
-            $sql = $pdoCV->query(" SELECT * FROM t_utilisateur WHERE id_utilisateur = '1' ");
+            $sql = $pdoCV->query(" SELECT * FROM t_utilisateurs WHERE id_utilisateur = '$id_utilisateur' ");
             $ligne = $sql->fetch();
     ?>
-	<title>Site CV : expériences : <?php echo $ligne['prenom'].' '.$ligne['nom']; ?></title>
+	<title>Site CV admin : <?php echo $prenom.' '.$nom; ?></title>
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,700,700italic,400italic' rel='stylesheet' type='text/css'>
 	<link type="text/css" href="../css/style_admin.css" rel="stylesheet">
 <!--    CKEditor-->

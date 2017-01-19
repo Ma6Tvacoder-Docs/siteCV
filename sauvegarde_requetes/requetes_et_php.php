@@ -1,6 +1,6 @@
 <!--SELECT SIMPLE UNE SEULE RÉPONSE-->
 <?php 
-    $sql = $pdoCV->query(" SELECT * FROM t_utilisateur WHERE id_utilisateur ='2' ");
+    $sql = $pdoCV->query(" SELECT * FROM t_utilisateurs WHERE id_utilisateur ='2' ");
     $ligne = $sql->fetch();
     ?>
 

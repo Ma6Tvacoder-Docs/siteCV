@@ -42,7 +42,7 @@ if(isset($_GET['deconnect'])){
             }//ferme le if
         }//ferme if(isset)
 
-//Suppression d'une compétence
+//Suppression d'une expérience
     if(isset($_GET['id_experience'])){
             $efface = $_GET['id_experience'];
             $sql = " DELETE FROM t_experiences WHERE id_experience = '$efface' ";
@@ -55,7 +55,7 @@ if(isset($_GET['deconnect'])){
 <html lang="fr">
 <head>
 <meta charset="utf-8">
-    <?php /*SELECT SIMPLE UNE SEULE RÉPONSE */
+    <?php 
             $sql = $pdoCV->query(" SELECT * FROM t_utilisateurs WHERE id_utilisateur = '$id_utilisateur' ");
             $ligne = $sql->fetch();
     ?>

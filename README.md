@@ -1,7 +1,6 @@
 # siteCV
 exo site CV pour les numériques de VLG
 
-
 descriptif rapide du site CV pour le chantier des numériques de Villeneuve-la-Garenne
 
 ### Le site CV doit comporter les dossiers suivants
@@ -9,7 +8,8 @@ descriptif rapide du site CV pour le chantier des numériques de Villeneuve-la-G
 - connexion / pour y ranger le fichier de connexion
 - css / les styles
 - docs / les .pdf (entre autres les cv au format .pdf)
-- sauvegarde-base / les sauvegardes de la BDD à faire avant chaque  modification de la base
+- sauvegarde-base / les sauvegardes de la BDD à faire avant chaque modification majeure
+- des dossiers de rangement faciles à identifier quand à leur contenu
 
 - un site public
 - un site d'administration
@@ -17,5 +17,7 @@ descriptif rapide du site CV pour le chantier des numériques de Villeneuve-la-G
 - des dossiers de sauvegarde, nommés "sauvegarde_XXX" pour y sauvegarder des infos, la BDD, des fichiers anciens, des requêtes etc.
 
 le site d'administration doit être sécurisé 
+- il est nécessaire de créer une variable de SESSION pour s'authetifier sur le site
 - on doit pouvoir récupérer le mot de passe
 - on doit pouvoir insérer des données dans la base et en mettre à jour
+

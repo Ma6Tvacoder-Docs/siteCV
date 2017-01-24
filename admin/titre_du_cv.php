@@ -112,7 +112,7 @@ if(isset($_GET['deconnect'])){
 					<td><?php echo $ligne['titre_cv'].' <br>'.$ligne['accroche']; ?></td>
                 <td><img src="../img/<?php echo $ligne['logo']; ?>"></td>
                 <td><p><a href="titre_du_cv.php?id_titre_cv=<?php echo $ligne['id_titre_cv']; ?>">Supprimer</a><br>
-                    <a href="modif_titre_du_cv.php?id_titre_cv=<?php echo $ligne['id_titre_cv']; ?>">Modifier</a></p></td>
+                    <a href="modif_titre_cv.php?id_titre_cv=<?php echo $ligne['id_titre_cv']; ?>">Modifier</a></p></td>
             </tr>
             
 			<?php } ?>

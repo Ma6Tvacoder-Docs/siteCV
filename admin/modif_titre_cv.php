@@ -28,25 +28,25 @@ if(isset($_GET['deconnect'])){
 
 ?>
 <?php
-//gestion des contenus mise à jour d'une expérience
-    if(isset($_POST['titre_e'])){//par le nom du premier input 
+//gestion des contenus mise à jour du titre du CV
+    if(isset($_POST['titre_cv'])){//par le nom du premier input 
     
-    $titre_e = addslashes($_POST['titre_e']);
-    $sous_titre_e = addslashes($_POST['sous_titre_e']);
-    $dates_e = addslashes($_POST['dates_e']);
-    $description_e = addslashes($_POST['description_e']);
+    $titre_cv = addslashes($_POST['titre_cv']);
+    $accroche = addslashes($_POST['accroche']);
+    $logo = addslashes($_POST['logo']);
 	$utilisateur_id = $_POST['utilisateur_id'];   
-    $id_experience = $_POST['id_experience'];         
+    $id_titre_cv = $_POST['id_titre_cv'];         
         
-    $pdoCV->exec(" UPDATE t_experiences SET titre_e='$titre_e', sous_titre_e='$sous_titre_e', dates_e='$dates_e', description_e='$description_e' WHERE id_experience='$id_experience' ");
+    $pdoCV->exec(" UPDATE t_titre_cv SET titre_cv='$titre_cv', accroche='$accroche', logo='$logo' WHERE id_titre_cv='$id_titre_cv' ");
 
-        header('location: ../admin/experiences.php'); //le header pour revenir à la liste des compétences de l'utilisateur
+        header('location: ../admin/titre_du_cv.php'); //le header pour revenir à la liste des compétences de l'utilisateur
     exit();
 }
-    //je récupère la compétence
-    $id_experience = $_GET['id_experience']; // par l'id_experience et $_GET
-    $sql=  $pdoCV->query(" SELECT * FROM t_experiences WHERE id_experience = '$id_experience' ");
-    $ligne_experience = $sql->fetch();
+    //je récupère le titre du CV
+    $id_titre_cv = $_GET['id_titre_cv']; // par l'id_experience et $_GET
+    $sql=  $pdoCV->query(" SELECT * FROM t_titre_cv WHERE id_titre_cv = '$id_titre_cv' ");
+    $ligne_titre_cv = $sql->fetch();
+    //echo $id_titre_cv;
 
 ?>
 <!DOCTYPE html>
@@ -73,22 +73,18 @@ if(isset($_GET['deconnect'])){
     </div>
 <!--        fin de menu-->
     <div id="contenuPrincipal">
-        <h1>Admin : Modification d'une expérience</h1>
-    <form action="modif_experience.php" method="post">
+        <h1>Admin : Modification du titre du CV</h1>
+    <form action="modif_titre_cv.php" method="post">
         <table border="1">
             <tr>
-                <td>Modification d'une expérience</td>
+                <td>Modification du titre du CV</td>
                 <td>
-                <input type="text" name="titre_e" size="50" value="<?php echo $ligne_experience['titre_e']; ?>" required >
-                <input type="text" name="sous_titre_e" size="50" value="<?php echo $ligne_experience['sous_titre_e']; ?>" required >
-                    <input type="text" name="dates_e" size="50" value="<?php echo $ligne_experience['dates_e']; ?>" required >
-                    <textarea name="description_e" id="editor1" size="100" cols="80" rows="10" required><?php echo $ligne_experience['description_e']; ?></textarea>
-                    <script>
-                                // Replace the <textarea id="editor1"> with a CKEditor instance, using default configuration.
-                                CKEDITOR.replace( 'editor1' );
-                            </script>
-                <input hidden name="utilisateur_id" value="<?php echo $ligne_experience['utilisateur_id']; ?>">
-                <input hidden name="id_experience" value="<?php echo $ligne_experience['id_experience']; ?>">
+                <input type="text" name="titre_cv" size="50" value="<?php echo $ligne_titre_cv['titre_cv']; ?>" required ><br>
+                <input type="text" name="accroche" size="50" value="<?php echo $ligne_titre_cv['accroche']; ?>" required >
+                <input type="text" name="logo" size="50" value="<?php echo $ligne_titre_cv['logo']; ?>" required >
+                    
+                <input hidden name="utilisateur_id" value="<?php echo $ligne_titre_cv['utilisateur_id']; ?>">
+                <input hidden name="id_titre_cv" value="<?php echo $ligne_titre_cv['id_titre_cv']; ?>">
                 </td>
             </tr>
             <tr>

@@ -17,7 +17,7 @@ descriptif rapide du site CV pour le chantier des numériques de Villeneuve-la-G
 - des dossiers de sauvegarde, nommés "sauvegarde_XXX" pour y sauvegarder des infos, la BDD, des fichiers anciens, des requêtes etc.
 
 le site d'administration doit être sécurisé 
-- il est nécessaire de créer une variable de SESSION pour s'authetifier sur le site
+- il est nécessaire de créer une variable de SESSION pour s'authentifier sur le site
 - on doit pouvoir récupérer le mot de passe
 - on doit pouvoir insérer des données dans la base et en mettre à jour
 
